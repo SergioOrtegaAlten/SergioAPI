@@ -29,9 +29,9 @@ Scenario Outline: update a PET
 	When I send a POST Request
 	Then the response return the status code <status>
 	And Verify with a Get Request to data is correct
-	When I Modify the pet name with <updateName> and remove the tags
-	When I send a PUT Request
-	Then the response return the status code <status>
+	And I Modify the pet name with <updateName> and remove the tags
+	And I send a PUT Request
+	And the response return the status code <status>
 	And Verify with a Get Request to data is correct
 	Examples:
 	
@@ -45,10 +45,10 @@ Scenario Outline: Delete a PET
 	When I send a POST Request
 	Then the response return the status code <status>
 	And Verify with a Get Request to data is correct
-	When I send a DELETE Request
-	Then the response return the status code <status>
-	When I send a Get Request
-	Then the response return the status code <status2>
+	And I send a DELETE Request
+	And the response return the status code <status>
+	And I send a Get Request
+	And the response return the status code <status2>
 	Examples:
 	
     | 	name 					| tags		| status	| status2 		|

@@ -51,14 +51,14 @@ public class IMDBPetStoreSteps {
 	}
 
 	//POST
-	@Given("^Add a pet with name (.*) and tag (.*)$")
+	@And("^Add a pet with name (.*) and tag (.*)$")
 	public void add_a_Pet_with_name_and_tag(String petName, String petTag) throws Throwable {
 		LOGGER.info("add_a_Pet_with_name_and_tag=");
 		setCurrentNamePet(petName);
 		setCurrentNameTag(petTag);
 	}
 
-	@When("^I send a POST Request$")
+	@And("^I send a POST Request$")
 	public void i_send_a_POST_Request() throws Throwable {
 		LOGGER.info("send a POST Request");
 		String postBody = "{\n" +
@@ -89,7 +89,7 @@ public class IMDBPetStoreSteps {
 	}
 
 	//PUT
-	@When("^I Modify the pet name with (.*) and remove the tags$")
+	@And("^I Modify the pet name with (.*) and remove the tags$")
 	public void i_modify_the_pet_name_with_and_remove_the_tags(String name) throws Throwable {
 		LOGGER.info("send a PUT Request");
 
@@ -98,7 +98,7 @@ public class IMDBPetStoreSteps {
 
 	}
 
-	@When("^I send a PUT Request$")
+	@And("^I send a PUT Request$")
 	public void i_send_a_put_Request() throws Throwable {
 		LOGGER.info("send a PUT Request");
 		String postBody = ("{\n" +
@@ -120,7 +120,7 @@ public class IMDBPetStoreSteps {
 	}
 
 	//DELETE
-	@When("^I send a DELETE Request$")
+	@And("^I send a DELETE Request$")
 	public void i_send_a_delete_Request() throws Throwable {
 		LOGGER.info("send a DELETE Request");
 		Response response = given().delete(PET_DELETE + getCurrentIDPet());
