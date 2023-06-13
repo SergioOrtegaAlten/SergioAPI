@@ -12,6 +12,7 @@ import org.junit.Assert;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class IMDBPetStoreSteps {
 
@@ -126,7 +127,6 @@ public class IMDBPetStoreSteps {
 		Response response = given().delete(PET_DELETE + getCurrentIDPet());
 		LOGGER.info("statusCode="+response.getStatusCode());
 		this.setCurrentResponse(response);
-
 
 	}
 	//currentResponse
