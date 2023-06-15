@@ -1,5 +1,6 @@
 package bdd.runner;
 
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
@@ -8,9 +9,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 		  features = "classpath:cucumber/pet_store.feature" ,
 		  glue = "bdd.steps",
-		monochrome = true,
-format = "json:target/cucumber-json-report.json",
-plugin={"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
+		monochrome = true
+
+
 )
 public class RunPetStoreTest {
 }

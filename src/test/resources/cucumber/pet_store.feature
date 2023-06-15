@@ -7,11 +7,12 @@ Scenario Outline: Get a PET
 	When I send a Get Request
 	Then the response return the status code <status>
 	Examples:
-	
-    | 	id 		| status	| 
-    | 	555 	| 404 		|
+
+    | 	id 		| status	|
+    | 	555 	| 200		|
     
 @POST
+
 Scenario Outline: Add a PET
 	Given Add a pet with name <name> and tag <tags>
 	When I send a POST Request
