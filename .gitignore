@@ -40,3 +40,7 @@ build/
 .gradle
 .idea
 build
+/.gradle/
+/.gradle/
+/.gradle/
+/.idea/
