@@ -30,6 +30,7 @@ allure {
 
 test {
     systemProperty "cucumber.filter.tags", project.findProperty("cucumber.filter.tags")
+
 }
 
 dependencies {
