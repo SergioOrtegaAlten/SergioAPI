@@ -1,4 +1,4 @@
-@PETREST
+
 Feature: PET REST PROJECT
 
 @GET

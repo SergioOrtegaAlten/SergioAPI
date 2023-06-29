@@ -5,18 +5,28 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.qameta.allure.Allure;
+import io.qameta.allure.*;
 import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.filter.log.ErrorLoggingFilter;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
+import static io.restassured.RestAssured.filters;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static jdk.nashorn.internal.objects.NativeArray.filter;
 import static org.junit.Assert.assertTrue;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Epic;
+import org.junit.jupiter.api.DisplayName;
 
+@Epic("PEPE")
+@Feature("JUAN")
+@DisplayName("PACO")
 public class IMDBPetStoreSteps {
 
 
@@ -36,16 +46,24 @@ public class IMDBPetStoreSteps {
 	@Given("^An Pet with ID equals to (.*)$")
 	public void an_Pet_with_ID_equals_to(int id) throws Throwable {
 		currentIDPet = id;
+		filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new ErrorLoggingFilter());
 	}
+
 
 	@When("^I send a Get Request$")
 	public void i_send_a_Get_Request() throws Throwable {
+
 		LOGGER.info("send a GET Request");
-		Response response = given().get(PET_GET+this.getCurrentIDPet());
-		int statusCode = response.getStatusCode();
+		//Response response = given().get(PET_GET+this.getCurrentIDPet());
+		Response response = given()
+				.filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new ErrorLoggingFilter())
+				.filter(new AllureRestAssured())
+				.get(PET_GET + this.getCurrentIDPet());
+
 		LOGGER.info("statusCode="+response.getStatusCode());
 		this.setCurrentResponse(response);
-		Allure.step(String.valueOf(statusCode));
+
+
 
 
 
@@ -81,7 +99,13 @@ public class IMDBPetStoreSteps {
 				" }\n" +
 				" ]\n" +
 				"}";
-		Response response = given().header("Content-type", "application/json").and().body(postBody).when().post(PET_POST);
+		Response response = given()
+				.filter(new AllureRestAssured())
+				.header("Content-type", "application/json")
+				.and()
+				.body(postBody)
+				.when()
+				.post(PET_POST);
 
 		LOGGER.info("statusCode="+response.getStatusCode());
 		setCurrentResponse(response);
